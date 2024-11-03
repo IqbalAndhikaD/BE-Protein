@@ -7,6 +7,5 @@ setUp.get('/', (req, res) => {
 })
 
 setUp.listen(port, () => {
-    // console.log('Server berjalan pada http://localhost',port)
     console.log(`Server berjalan pada http://localhost:${port}`)
 } )
