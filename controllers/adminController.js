@@ -1,4 +1,4 @@
-const adminTable = require('../models/adminModels')
+const adminTable = require('../models/admin')
 
 module.exports = {
 

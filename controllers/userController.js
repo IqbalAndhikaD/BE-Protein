@@ -1,4 +1,4 @@
-const userTable = require('../models/userModels')
+const userTable = require('../models/user')
 
 module.exports = {
     getAllUser : async (req, res) => {
