@@ -10,8 +10,8 @@ require('dotenv').config()
 
 connectDB()
 
-app.use('/users', require('./routes/userRoute'))
-app.use('/admins', require('./routes/adminRoute'))
+app.use('/user', require('./routes/userRoute'))
+app.use('/admin', require('./routes/adminRoute'))
 
 app.listen(process.env.PORT, () => {
     console.log(`Server berjalan pada http://localhost:${process.env.PORT}`)

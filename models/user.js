@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
+    fullname: {
+        type: String,
+        required: true,
+        unique: true,
+    },
     username: {
         type: String,
         required: true,
@@ -20,7 +25,6 @@ const userSchema = new mongoose.Schema({
     bidang: {
         type: String,
         required: true,
-        unique: true,
     },
     isActive: {
         type: Boolean,
