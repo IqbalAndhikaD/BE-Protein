@@ -78,4 +78,74 @@ module.exports = {
       res.status(500).json(error);
     }
   },
+
+  getAdminById: async (req, res) => {
+    try {
+      const adminId = req.params.id; 
+      const admin = await adminTable.findById(adminId);
+
+      if (!admin) {
+        return res.status(404).json({ message: "Admin tidak ditemukan" });
+      }
+
+      res.status(200).json({ admin });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Terjadi kesalahan saat mengambil admin" });
+    }
+  },
+
+  // Update Admin
+  updateAdmin: async (req, res) => {
+    try {
+      const adminId = req.params.id; 
+      const updates = req.body; 
+
+      const updatedAdmin = await adminTable.findByIdAndUpdate(
+        adminId,
+        updates,
+        {
+          new: true, 
+        }
+      );
+
+      if (!updatedAdmin) {
+        return res.status(404).json({ message: "Admin tidak ditemukan" });
+      }
+
+      res.status(200).json({ updatedAdmin });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Terjadi kesalahan saat memperbarui admin" });
+    }
+  },
+
+  // Delete Admin
+  deleteAdmin: async (req, res) => {
+    try {
+      const adminId = req.params.id; // Assuming ID is in the URL parameter
+
+      const deletedAdmin = await adminTable.findByIdAndDelete(adminId);
+
+      if (!deletedAdmin) {
+        return res.status(404).json({ message: "Admin tidak ditemukan" });
+      }
+
+      res.status(200).json({ message: "Admin berhasil dihapus" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Terjadi kesalahan saat menghapus admin" });
+    }
+  },
+
+  // Logout Admin
+  logoutAdmin: async (req, res) => {
+    try {
+      res.clearCookie("jwtToken"); // Asumsi JWT disimpan dalam cookie dengan nama 'jwtToken'
+      res.status(200).json({ message: "Logout berhasil" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Terjadi kesalahan saat logout" });
+    }
+  },
 };
