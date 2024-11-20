@@ -59,7 +59,7 @@ module.exports = {
 
       // Generate JWT token
       const token = jwt.sign(
-        { id: admin._id, username: admin.username },
+        { id: admin._id, status: admin.isActive },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
       );
